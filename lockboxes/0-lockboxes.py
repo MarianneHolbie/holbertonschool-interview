@@ -36,7 +36,7 @@ def canUnlockAll(boxes):
         unlocked_boxes.add(box_index)
 
         # check keys in this box and recursively unlock
-        for key in keys.get(box_index, []):
+        for key in boxes[box_index]:
             unlockbox(key)
 
     # open first box 0
@@ -49,4 +49,5 @@ def canUnlockAll(boxes):
         result = False
 
     return result
+
 
