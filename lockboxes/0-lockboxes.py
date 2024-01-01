@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
     Lockboxes algorithm : can you open all box or not ?
 """
