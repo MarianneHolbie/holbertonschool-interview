@@ -37,7 +37,7 @@ def canUnlockAll(boxes):
 
         # check keys in this box and recursively unlock
         for key in boxes[box_index]:
-            if key < n - 1:
+            if key < n:
                 unlockbox(key)
 
     # open first box 0
