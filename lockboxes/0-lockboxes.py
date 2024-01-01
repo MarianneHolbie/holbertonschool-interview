@@ -3,6 +3,10 @@
     Lockboxes algorithm : can you open all box or not ?
 """
 
+import sys
+
+sys.setrecursionlimit(10**4)
+
 
 def canUnlockAll(boxes):
     """
