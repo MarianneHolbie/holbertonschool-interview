@@ -18,7 +18,6 @@ if (new == NULL)
 return (NULL);
 
 new->n = number;
-new->next = NULL;
 
 if (*head == NULL || number < current->n)
 {
