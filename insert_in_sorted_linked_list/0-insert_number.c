@@ -23,7 +23,7 @@ if (*head == NULL || number < current->n)
 {
 new->next = *head;
 *head = new;
-return new;
+return (new);
 }
 
 while (current->next && number > current->next->n)
