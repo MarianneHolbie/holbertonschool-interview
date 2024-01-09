@@ -34,8 +34,8 @@ new->next = *head;
 }
 else
 {
-    new->next = current;
-    prev->next = new;
+new->next = current;
+prev->next = new;
 }
 return (new);
 }
