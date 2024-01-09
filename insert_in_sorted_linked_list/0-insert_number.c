@@ -36,6 +36,8 @@ else
 {
 new->next = current;
 prev->next = new;
+
+free(current);
 }
 return (new);
 }
