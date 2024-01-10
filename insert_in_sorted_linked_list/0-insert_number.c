@@ -25,7 +25,7 @@ while (current && current->next && number > current->next->n)
     current = current->next;
 }
 
-if (current == NULL)
+if ((current == NULL) || (current->n > number))
 {
     new->next = *head;
     *head = new;
