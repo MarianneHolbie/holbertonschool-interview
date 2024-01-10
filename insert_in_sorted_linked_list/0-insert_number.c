@@ -32,7 +32,7 @@ if (current == NULL)
 }
 else
 {
-    new->next = current;
+    new->next = current->next;
     current->next = new;
 }
 return (new);
