@@ -8,3 +8,6 @@ You have `n` number of locked boxes in front of you. Each box is numbered sequen
 may contain keys to the other boxes.
 Write a method that determines if all the boxes can be opened.
 
+## [insert_in_sorted_linked_list](insert_in_sorted_linked_list)
+
+Write a function in C that inserts a number into a sorted singly linked list.
