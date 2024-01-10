@@ -17,7 +17,6 @@ if (new == NULL)
     return (NULL);
 
 new->n = number;
-new->next = NULL;
 
 while (current && current->next && number > current->next->n)
 {
