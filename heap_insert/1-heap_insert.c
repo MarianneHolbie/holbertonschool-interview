@@ -30,6 +30,9 @@ return (new_node);
 // find the parent using a function
 size = binary_tree_size(*root);
 parent = get_node_from_index(*root, (int)(size - 1) / 2);
+
+if (parent != NULL)
+{
 new_node->parent = parent;
 
 if (size % 2 == 0)
@@ -39,7 +42,12 @@ parent->left = new_node;
 
 // call function to restore the Max Heap property
 heapify_up(new_node);
-
+}
+else
+{
+free(new_node);
+return (NULL);
+}
 return (new_node);
 }
 
