@@ -1,117 +1,124 @@
 #include <stdlib.h>
 #include "binary_trees.h"
 
+
 /**
- * heap_insert - Inserts a value into a Max Binary Heap
- * @root: Double pointer to the root node of the Heap
- * @value: Value to store in the node to be inserted
- *
- * Return: Pointer to the inserted node, or NULL on failure
- */
+* find_parent - search parent node of the next node to be inserted
+* @root: pointer root node of the Heap
+* @height: height of the tree
+* Return: pointer parent node
+*/
+
+heap_t *find_parent_node(heap_t *root, int height)
+{
+	heap_t *parent = root;
+
+	if (root == NULL || height < 2)
+		return (NULL);
+
+	if (height == 2)
+	{
+		if (root->left == NULL || root->right == NULL)
+			return (root);
+		else
+			return (NULL);
+	}
+
+	parent = find_parent(root->left, height - 1);
+	if (parent == NULL)
+		parent = find_parent(root->right, height - 1);
+
+	return (parent);
+}
+
+
+/**
+* swap_nodes - swaps the values of two nodes
+* @node1: pointer to the first node
+* @node2: pointer to the second node
+*/
+
+void swap_nodes(heap_t *node1, heap_t *node2)
+{
+	int temp;
+
+	if (node1 == NULL || node2 == NULL)
+		return;
+
+	temp = node1->n;
+	node1->n = node2->n;
+	node2->n = temp;
+}
+
+
+/**
+* height_tree - find the height of binary tree
+* @tree: pointer root node of tree
+* Return: height of the tree
+*/
+
+int height_tree(const binary_tree_t *tree)
+{
+	int left_height = 0;
+	int right_height = 0;
+
+	if (tree == NULL)
+		return (0);
+
+	left_height = height_tree(tree->left);
+	right_height = height_tree(tree->right);
+
+	if (left_height > right_height)
+		return (left_height + 1);
+	else
+		return (right_height + 1);
+}
+
+
+/**
+* heap_insert - inserts a value into a Max Binary Heap
+* @root: double pointer to the root node of the Heap
+* @value: value store in the node to be inserted
+* Return: pointer to the inserted node, or NULL on failure
+*/
+
 heap_t *heap_insert(heap_t **root, int value)
 {
-heap_t *new_node, *parent;
-size_t size;
+	heap_t *new_node = NULL;
+	heap_t *parent = NULL;
+	heap_t *move = *root;
+	int height = height_tree(*root);
 
-if (root == NULL)
-return (NULL);
+	if (root == NULL)
+		return (NULL);
 
-new_node = binary_tree_node(NULL, value);
-if (new_node == NULL)
-return (NULL);
+	new_node = binary_tree_node(NULL, value);
+	if (new_node == NULL)
+		return (NULL);
 
-// Case new node = root
-if (*root == NULL)
-{
-*root = new_node;
-return (new_node);
-}
+	if (*root == NULL)
+		return (*root = new_node);
 
-// find the parent using a function
-size = binary_tree_size(*root);
-parent = get_node_from_index(*root, (int)(size - 1) / 2);
+	parent = find_parent(*root, height);
+	if (parent == NULL)
+	{
+		while (move->left != NULL)
+			move = move->left;
+		parent = move;
+	}
 
-if (parent != NULL)
-{
-new_node->parent = parent;
+	if (parent->left == NULL)
+		parent->left = new_node;
+	else
+		parent->right = new_node;
 
-if (size % 2 == 0)
-parent->right = new_node;
-else
-parent->left = new_node;
+	new_node->parent = parent;
 
-// call function to restore the Max Heap property
-heapify_up(new_node);
-}
-else
-{
-free(new_node);
-return (NULL);
-}
-return (new_node);
-}
+	while (new_node->parent != NULL && new_node->n > new_node->parent->n)
+	{
+		swap_nodes(new_node, new_node->parent);
+		new_node = new_node->parent;
+	}
 
-/**
- * binary_tree_size - calculate the size of a binary tree
- * @tree: pointer to the root node of the binary tree
- *
- * Return: size of the binary tree
- */
-size_t binary_tree_size(const binary_tree_t *tree)
-{
-if (tree == NULL)
-{
-return (0);
-}
-return (binary_tree_size(tree->left) + binary_tree_size(tree->right) + 1);
-}
-
-/**
- * heapify_up - Restores the Max Heap property after insertion
- * @node: Pointer to the inserted node
- */
-void heapify_up(heap_t *node)
-{
-heap_t *parent;
-int temp;
-
-if (node == NULL)
-return;
-
-parent = node->parent;
-// swap the node with its parent if necessary
-// moving up the tree until the property is restored
-while (parent != NULL && node->n > parent->n)
-{
-temp = node->n;
-node->n = parent->n;
-parent->n = temp;
-
-node = parent;
-parent = node->parent;
-}
-}
-
-/**
- * get_node_from_index - Get a node from its index in the heap
- * @root: pointer to the root node
- * @idx: indew of the node to search
- *
- * Return: pointer to the node
- */
-heap_t *get_node_from_index(heap_t *root, int idx)
-{
-int parentIdx, direction;
-
-if (idx == 0)
-return (root);
-
-parentIdx = (idx - 1) / 2;
-direction = (idx - 1) % 2;
-
-if (direction == 0)
-{
-return (get_node_from_index(root, parentIdx)->left);
-}
-return (get_node_from_index(root, parentIdx)->right);
+	return (new_node);
 }
