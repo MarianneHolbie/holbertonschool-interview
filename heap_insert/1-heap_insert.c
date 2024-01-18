@@ -3,7 +3,7 @@
 
 
 /**
-* find_parent - search parent node of the next node to be inserted
+* find_parent_node - search parent node of the next node to be inserted
 * @root: pointer root node of the Heap
 * @height: height of the tree
 * Return: pointer parent node
