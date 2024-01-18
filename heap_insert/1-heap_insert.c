@@ -10,101 +10,52 @@
  */
 heap_t *heap_insert(heap_t **root, int value)
 {
-    heap_t *new_node, *parent;
+heap_t *new_node, *parent;
+size_t size;
 
-    if (root == NULL)
-        return (NULL);
+if (root == NULL)
+return (NULL);
 
-    new_node = binary_tree_node(NULL, value);
-    if (new_node == NULL)
-        return (NULL);
+new_node = binary_tree_node(NULL, value);
+if (new_node == NULL)
+return (NULL);
 
-    // Case new node = root
-    if (*root == NULL)
-    {
-        *root = new_node;
-        return (new_node);
-    }
+// Case new node = root
+if (*root == NULL)
+{
+*root = new_node;
+return (new_node);
+}
 
-    // find the parent using a function
-    parent = get_insertion_parent(*root);
-    new_node->parent = parent;
+// find the parent using a function
+size = binary_tree_size(*root);
+parent = get_node_from_index(*root, (int)(size - 1) / 2);
+new_node->parent = parent;
 
-    if (parent->left == NULL)
-        parent->left = new_node;
-    else
-        parent->right = new_node;
+if (size % 2 == 0)
+parent->right = new_node;
+else
+parent->left = new_node;
 
-    // call function to restore the Max Heap property
-    heapify_up(new_node);
+// call function to restore the Max Heap property
+heapify_up(new_node);
 
-    return (new_node);
+return (new_node);
 }
 
 /**
- * get_insertion_parent - Finds the parent node for insertion
- * @root: Pointer to the root node of the Heap
+ * binary_tree_size - calculate the size of a binary tree
+ * @tree: pointer to the root node of the binary tree
  *
- * Return: Pointer to the parent node for insertion
+ * Return: size of the binary tree
  */
-heap_t *get_insertion_parent(heap_t *root)
+size_t binary_tree_size(const binary_tree_t *tree)
 {
-    heap_t *parent;
-
-    if (root == NULL)
-        return (NULL);
-
-    parent = root;
-    // iteratively traverse the tree to fin a node 
-    // with at least one child missing
-    while (parent->left != NULL && parent->right != NULL)
-    {
-        if (binary_tree_is_perfect(parent->left) &&
-            !binary_tree_is_perfect(parent->right))
-            parent = parent->left;
-        else
-            parent = parent->right;
-    }
-
-    return (parent);
+if (tree == NULL)
+{
+return (0);
 }
-
-/**
- * binary_tree_is_perfect - Checks if a binary tree is perfect
- * @tree: Pointer to the root node of the binary tree
- *
- * Return: 1 if the binary tree is perfect, 0 otherwise
- */
-int binary_tree_is_perfect(const binary_tree_t *tree)
-{
-    int left_height, right_height;
-
-    if (tree == NULL)
-        return (0);
-
-    left_height = binary_tree_height(tree->left);
-    right_height = binary_tree_height(tree->right);
-
-    return (left_height == right_height);
-}
-
-/**
- * binary_tree_height - Measures the height of a binary tree
- * @tree: Pointer to the root node of the binary tree
- *
- * Return: Height of the binary tree
- */
-size_t binary_tree_height(const binary_tree_t *tree)
-{
-    size_t left_height, right_height;
-
-    if (tree == NULL)
-        return (0);
-
-    left_height = binary_tree_height(tree->left);
-    right_height = binary_tree_height(tree->right);
-
-    return (MAX(left_height, right_height) + 1);
+return (binary_tree_size(tree->left) + binary_tree_size(tree->right) + 1);
 }
 
 /**
@@ -113,22 +64,46 @@ size_t binary_tree_height(const binary_tree_t *tree)
  */
 void heapify_up(heap_t *node)
 {
-    heap_t *parent;
-    int temp;
+heap_t *parent;
+int temp;
 
-    if (node == NULL)
-        return;
+if (node == NULL)
+return;
 
-    parent = node->parent;
-    // swap the node with its parent if necessary
-    // moving up the tree until the property is restored
-    while (parent != NULL && node->n > parent->n)
-    {
-        temp = node->n;
-        node->n = parent->n;
-        parent->n = temp;
+parent = node->parent;
+// swap the node with its parent if necessary
+// moving up the tree until the property is restored
+while (parent != NULL && node->n > parent->n)
+{
+temp = node->n;
+node->n = parent->n;
+parent->n = temp;
 
-        node = parent;
-        parent = node->parent;
-    }
+node = parent;
+parent = node->parent;
+}
+}
+
+/**
+ * get_node_from_index - Get a node from its index in the heap
+ * @root: pointer to the root node
+ * @idx: indew of the node to search
+ *
+ * Return: pointer to the node
+ */
+heap_t *get_node_from_index(heap_t *root, int idx)
+{
+int parentIdx, direction;
+
+if (idx == 0)
+return (root);
+
+parentIdx = (idx - 1) / 2;
+direction = (idx - 1) % 2;
+
+if (direction == 0)
+{
+return (get_node_from_index(root, parentIdx)->left);
+}
+return (get_node_from_index(root, parentIdx)->right);
 }
