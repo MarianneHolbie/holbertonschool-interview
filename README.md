@@ -11,3 +11,8 @@ Write a method that determines if all the boxes can be opened.
 ## [insert_in_sorted_linked_list](insert_in_sorted_linked_list)
 
 Write a function in C that inserts a number into a sorted singly linked list.
+
+## [heap_insert](heap_insert)
+
+1. Write a function that creates a binary tree node
+2. Write a function that inserts a value into a Max Binary Heap

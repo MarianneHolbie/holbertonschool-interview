@@ -1,12 +1,18 @@
+<<<<<<< HEAD
 #ifndef MAX
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #endif
 
+=======
+>>>>>>> origin/main
 #ifndef _BINARY_TREES_H_
 #define _BINARY_TREES_H_
 
 #include <stddef.h>
+<<<<<<< HEAD
 #include <stdlib.h>
+=======
+>>>>>>> origin/main
 
 /**
  * struct binary_tree_s - Binary tree node
@@ -27,11 +33,14 @@ typedef struct binary_tree_s
 void binary_tree_print(const binary_tree_t *);
 typedef struct binary_tree_s heap_t;
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
+<<<<<<< HEAD
 void heapify_up(heap_t *node);
 size_t binary_tree_height(const binary_tree_t *tree);
 int binary_tree_is_perfect(const binary_tree_t *tree);
 heap_t *get_insertion_parent(heap_t *root);
 heap_t *heap_insert(heap_t **root, int value);
 
+=======
+>>>>>>> origin/main
 
 #endif /* _BINARY_TREES_H_ */
