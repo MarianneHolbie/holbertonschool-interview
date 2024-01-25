@@ -6,7 +6,6 @@
 
 """
 
-import numpy as np
 
 def minOperations(n):
     """
@@ -20,13 +19,13 @@ def minOperations(n):
     if n <= 1:
         return 0
 
-    min_op = []
+    operations = 0
+    divisor = 2
 
-    for i in range(2, n**2 + 1):
-        while n % i == 0:
-            min_op.append(i)
-            n //= i
-    if n > 1:
-        min_op.append(n)
+    while divisor <= n:
+        while n % divisor == 0:
+            operations += divisor
+            n //= divisor
+        divisor += 1
 
-    return np.sum(min_op)
+    return operations
