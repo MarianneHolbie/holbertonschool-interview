@@ -26,13 +26,11 @@ int is_stable(int grid[3][3])
 /**
  * topple - topple the sandpile at the given coordinates
  * @grid: sandpile
- * @i: row
- * @j: column
  */
 void topple(int grid[3][3])
 {
 	int i, j;
-	int tmp[3][3] = {0};
+	int tmp[3][3];
 
 	/* cells need topple */
 	for (i = 0; i < 3; i++)
@@ -41,21 +39,25 @@ void topple(int grid[3][3])
 		{
 			if (grid[i][j] > 3)
 			{
-				topple[i][j] = 1;
+				tmp[i][j] = 1;
 				grid[i][j] -= 4;
 				/* TOP topple */
-				if (i > 0) sandpile[i-1][j]++;
+				if (i > 0)
+					grid[i - 1][j]++;
 				/* BOTTOM topple */
-			        if (i < 2) sandpile[i+1][j]++;
+				if (i < 2)
+					grid[i + 1][j]++;
 				/* LEFT topple */
-			        if (j > 0) sandpile[i][j-1]++;
+				if (j > 0)
+					grid[i][j - 1]++;
 				/* RIGHT topple */
-			        if (j < 2) sandpile[i][j+1]++;
+				if (j < 2)
+					grid[i][j + 1]++;
 			}
 		}
 	}
 }
-			
+
 /**
  * sandpiles_sum- sandpile addition
  * @grid1 : first sandpile
