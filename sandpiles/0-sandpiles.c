@@ -29,50 +29,33 @@ int is_stable(int grid[3][3])
  * @i: row
  * @j: column
  */
-void topple(int grid[3][3], int i, int j)
+void topple(int grid[3][3])
 {
-	int tmp[3][3];
-	int x, y;
+	int i, j;
+	int tmp[3][3] = {0};
 
-	for (x = 0; x < 3; x++)
+	/* cells need topple */
+	for (i = 0; i < 3; i++)
 	{
-		for (y = 0; y < 3; y++)
+		for (j = 0; j < 3; j++)
 		{
-			tmp[x][y] = grid[x][y];
-		}
-	}
-	tmp[i][j] -= 4;
-
-	/* BOTTOM topple */
-	if (i + 1 < 3)
-	{
-		tmp[i + 1][j]++;
-	}
-	/* TOP topple */
-	if (i - 1 >= 0)
-	{
-		tmp[i - 1][j]++;
-	}
-	/* RIGHT topple */
-	if (j + 1 < 3)
-	{
-		tmp[i][j + 1]++;
-	}
-	/* LEFT topple */
-	if (j - 1 >= 0)
-	{
-		tmp[i][j - 1]++;
-	}
-	/* copy tmp to original grid */
-	for (x = 0; x < 3; x++)
-	{
-		for (y = 0; y < 3; y++)
-		{
-			grid[x][y] = tmp[x][y];
+			if (grid[i][j] > 3)
+			{
+				topple[i][j] = 1;
+				grid[i][j] -= 4;
+				/* TOP topple */
+				if (i > 0) sandpile[i-1][j]++;
+				/* BOTTOM topple */
+			        if (i < 2) sandpile[i+1][j]++;
+				/* LEFT topple */
+			        if (j > 0) sandpile[i][j-1]++;
+				/* RIGHT topple */
+			        if (j < 2) sandpile[i][j+1]++;
+			}
 		}
 	}
 }
-
+			
 /**
  * sandpiles_sum- sandpile addition
  * @grid1 : first sandpile
@@ -90,23 +73,12 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 		}
 	}
 
-	do {
-		printf("=\n");
+	/* toppling until stable */
+	while (!is_stable(grid1))
+	{
 		print_grid(grid1);
-
-		for (i = 0; i < 3; ++i)
-		{
-			for (j = 0; j < 3; ++j)
-			{
-				if (grid1[i][j] > 3)
-				{
-					topple(grid1, i, j);
-				}
-			}
-		}
-
-	/* topple until stable */
-	} while (!is_stable(grid1));
+		topple(grid1);
+	}
 }
 
 /**
