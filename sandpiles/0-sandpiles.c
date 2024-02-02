@@ -30,7 +30,6 @@ int is_stable(int grid[3][3])
 void topple(int grid[3][3])
 {
 	int i, j;
-	int tmp[3][3];
 
 	/* cells need topple */
 	for (i = 0; i < 3; i++)
@@ -39,7 +38,6 @@ void topple(int grid[3][3])
 		{
 			if (grid[i][j] > 3)
 			{
-				tmp[i][j] = 1;
 				grid[i][j] -= 4;
 				/* TOP topple */
 				if (i > 0)
@@ -78,6 +76,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	/* toppling until stable */
 	while (!is_stable(grid1))
 	{
+		printf("=\n");
 		print_grid(grid1);
 		topple(grid1);
 	}
