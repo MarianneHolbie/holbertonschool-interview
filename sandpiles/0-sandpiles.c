@@ -26,8 +26,9 @@ int is_stable(int grid[3][3])
 /**
  * topple - topple the sandpile at the given coordinates
  * @grid: sandpile
+ * @grid_tmp: temporary grid
  */
-void topple(int grid[3][3])
+void topple(int grid[3][3], int grid_tmp[3][3])
 {
 	int i, j;
 
@@ -41,19 +42,20 @@ void topple(int grid[3][3])
 				grid[i][j] -= 4;
 				/* TOP topple */
 				if (i > 0)
-					grid[i - 1][j]++;
+					grid_tmp[i - 1][j]++;
 				/* BOTTOM topple */
 				if (i < 2)
-					grid[i + 1][j]++;
+					grid_tmp[i + 1][j]++;
 				/* LEFT topple */
 				if (j > 0)
-					grid[i][j - 1]++;
+					grid_tmp[i][j - 1]++;
 				/* RIGHT topple */
 				if (j < 2)
-					grid[i][j + 1]++;
+					grid_tmp[i][j + 1]++;
 			}
 		}
 	}
+	sandpiles_sum(grid, grid_tmp);
 }
 
 /**
@@ -64,12 +66,14 @@ void topple(int grid[3][3])
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	int i, j;
+	int grid_tmp[3][3];
 	/* Add sandpiles */
 	for (i = 0; i < 3; ++i)
 	{
 		for (j = 0; j < 3; ++j)
 		{
 			grid1[i][j] += grid2[i][j];
+			grid_tmp[i][j] = 0;
 		}
 	}
 
@@ -78,7 +82,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	{
 		printf("=\n");
 		print_grid(grid1);
-		topple(grid1);
+		topple(grid1, grid_tmp);
 	}
 }
 
