@@ -26,7 +26,7 @@ int is_palindrome(listint_t **head)
 	}
 
 	/* if linked list is odd */
-	while (fast != NULL)
+	if (fast != NULL)
 	{
 
 		slow = slow->next;
