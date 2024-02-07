@@ -68,8 +68,12 @@ if (*stack == NULL)
 exit(EXIT_FAILURE);
 }
 
-listint_t *temp = *stack;
-int n = temp->n;
+listint_t *temp;
+int n;
+
+temp = *stack;
+n = temp->n;
+
 *stack = (*stack)->next;
 free(temp);
 
