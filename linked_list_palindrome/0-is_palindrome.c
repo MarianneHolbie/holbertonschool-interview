@@ -13,8 +13,6 @@ int is_palindrome(listint_t **head)
 	listint_t *fast = *head;
 	listint_t *stack = NULL;
 
-	// push all elements of the list
-	// in stack
 	while (fast != NULL && fast->next != NULL)
 	{
 		push(&stack, slow->n);
@@ -22,7 +20,7 @@ int is_palindrome(listint_t **head)
 		fast = fast->next->next;
 	}
 
-	// if linked list is odd
+	/* if linked list is odd */
 	while (fast != NULL)
 	{
 
