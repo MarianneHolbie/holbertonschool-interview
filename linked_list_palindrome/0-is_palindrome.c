@@ -36,10 +36,12 @@ int is_palindrome(listint_t **head)
 	{
 		if (pop(&stack) != slow->n)
 		{
+			free(stack);
 			return (0);
 		}
 		slow = slow->next;
 	}
+	free(stack);
 	return (1);
 }
 
