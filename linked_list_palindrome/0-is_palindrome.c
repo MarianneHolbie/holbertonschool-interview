@@ -13,6 +13,11 @@ int is_palindrome(listint_t **head)
 	listint_t *fast = *head;
 	listint_t *stack = NULL;
 
+	if (*head == NULL || (*head)->next == NULL)
+	{
+		return (1);
+	}
+
 	while (fast != NULL && fast->next != NULL)
 	{
 		push(&stack, slow->n);
