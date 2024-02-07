@@ -63,13 +63,13 @@ void push(listint_t **stack, int n)
  */
 int pop(listint_t **stack)
 {
+listint_t *temp;
+int n;
+
 if (*stack == NULL)
 {
 exit(EXIT_FAILURE);
 }
-
-listint_t *temp;
-int n;
 
 temp = *stack;
 n = temp->n;
