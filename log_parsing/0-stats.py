@@ -37,6 +37,7 @@ try:
             if status_code in count_status_code:
                 count_status_code[status_code] += 1
 
+            # print each 10 line
             if count_line % 10 == 0:
                 print('File size:{}'.format(total_size))
                 # print in sorted order
