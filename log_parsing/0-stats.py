@@ -7,7 +7,6 @@ import sys
 import re
 
 
-
 total_size = 0
 count_line = 0
 count_status_code = {'200': 0,
@@ -26,7 +25,7 @@ pattern = (r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} - '
 try:
     for line in sys.stdin:
 
-        # check ligne
+        # check line
         if re.match(pattern, line):
             count_line += 1
             # split line
