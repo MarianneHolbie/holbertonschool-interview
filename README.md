@@ -16,3 +16,6 @@ Write a function in C that inserts a number into a sorted singly linked list.
 
 1. Write a function that creates a binary tree node
 2. Write a function that inserts a value into a Max Binary Heap
+
+## [log_parsing](log_parsing)
+Write script that reads stdin line by line and computes metrics
