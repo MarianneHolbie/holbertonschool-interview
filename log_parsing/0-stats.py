@@ -43,7 +43,7 @@ try:
                 # print in sorted order
                 for code, count_code in sorted(count_status_code.items()):
                     if count_code != 0:
-                        print('{}: {}\n'.format(code, count_status_code[code]))
+                        print('{}: {}'.format(code, count_status_code[code]))
                 # reinitialized count line
                 count_line = 0
 
