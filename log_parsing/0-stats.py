@@ -26,7 +26,8 @@ try:
     for line in sys.stdin:
 
         # check line
-        if re.match(pattern, line):
+        match = re.match(pattern, line)
+        if match:
             count_line += 1
             # split line
             elements = line.split(" ")
