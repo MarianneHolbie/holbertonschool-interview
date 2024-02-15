@@ -19,7 +19,7 @@ count_status_code = {'200': 0,
                      '500': 0
                      }
 # pattern of line
-pattern = (r'^((?:\d{1,3}\.){3}\d{1,3}|[\w.-]+) - \[(.*?)\]'
+pattern = (r'^((?:\d{1,3}\.){3}\d{1,3}|[\w.-]+)\s*-\s*\[(.*?)\]'
            r' "GET /projects/\d+ HTTP/1\.1" \d+ \d+$')
 
 try:
