@@ -39,7 +39,7 @@ try:
 
             # print each 10 line
             if count_line % 10 == 0:
-                print('File size:{}'.format(total_size))
+                print('File size: {}'.format(total_size))
                 # print in sorted order
                 for code, count_code in sorted(count_status_code.items()):
                     if count_code != 0:
@@ -55,4 +55,4 @@ finally:
     # print in sorted order
     for code, count_code in sorted(count_status_code.items()):
         if count_code != 0:
-            print('{}: {}\n'.format(code, count_status_code[code]))
+            print('{}: {}'.format(code, count_status_code[code]))
