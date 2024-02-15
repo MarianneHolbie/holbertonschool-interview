@@ -51,7 +51,7 @@ except KeyboardInterrupt:
     pass
 
 finally:
-    print('File size:{}'.format(total_size))
+    print('File size: {}'.format(total_size))
     # print in sorted order
     for code, count_code in sorted(count_status_code.items()):
         if count_code != 0:
