@@ -47,6 +47,10 @@ try:
                         print('{}: {}'.format(code, count_status_code[code]))
                 # reinitialized count line
                 count_line = 0
+        else:
+            elements = line.split(" ")
+            if len(elements) > 6:
+                total_size += int(elements[-1])
 
 except KeyboardInterrupt:
     pass
