@@ -19,14 +19,15 @@ count_status_code = {'200': 0,
                      '500': 0
                      }
 # pattern of line
-pattern = (r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} - '
-           r'\[.*\] "GET /projects/\d+ HTTP/1\.1" \d+ \d+$')
+pattern = (r'^((?:\d{1,3}\.){3}\d{1,3}|[\w.-]+)\s*-\s*\[(.*?)\]'
+           r' "GET /projects/\d+ HTTP/1\.1" \d+ \d+$')
 
 try:
     for line in sys.stdin:
 
         # check line
-        if re.match(pattern, line):
+        match = re.match(pattern, line)
+        if match:
             count_line += 1
             # split line
             elements = line.split(" ")
@@ -39,16 +40,23 @@ try:
 
             # print each 10 line
             if count_line % 10 == 0:
-                print('File size:{}'.format(total_size))
+                print('File size: {}'.format(total_size))
                 # print in sorted order
                 for code, count_code in sorted(count_status_code.items()):
                     if count_code != 0:
                         print('{}: {}'.format(code, count_status_code[code]))
                 # reinitialized count line
                 count_line = 0
+        else:
+            elements = line.split(" ")
+            if len(elements) > 6:
+                total_size += int(elements[-1])
 
 except KeyboardInterrupt:
-    print('File size:{}'.format(total_size))
+    pass
+
+finally:
+    print('File size: {}'.format(total_size))
     # print in sorted order
     for code, count_code in sorted(count_status_code.items()):
         if count_code != 0:
