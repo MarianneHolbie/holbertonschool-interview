@@ -14,7 +14,7 @@ int is_palindrome(unsigned long n)
 	int r;
 
 	if (n == 0)
-		return (0);
+		return (1);
 
 	copy_n = n;
 
