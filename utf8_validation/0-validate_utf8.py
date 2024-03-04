@@ -12,7 +12,8 @@ def one_byte_encoding(number: int):
             number (int): The integer representing the byte.
 
         Returns:
-            bool: True if the byte represents a one-byte character, otherwise False.
+            bool: True if the byte represents a one-byte character,
+             otherwise False.
         """
     # check if 8th bit is set
     if number & 1 << 7 == 0:
@@ -22,15 +23,18 @@ def one_byte_encoding(number: int):
 
 def byte_encoding(byte_len, data, i):
     """
-       Checks if the sequence of bytes starting from the provided index represents a multi-byte UTF-8 character.
+       Checks if the sequence of bytes starting from the provided index
+       represents a multibyte UTF-8 character.
 
        Args:
            byte_len (int): The length of the multibyte character.
-           data (list[int]): The list of integers representing the UTF-8 encoded data.
+           data (list[int]): The list of integers representing the UTF-8
+           encoded data.
            i (int): The starting index of the sequence.
 
        Returns:
-           bool: True if the sequence represents a valid multi-byte character, otherwise False.
+           bool: True if the sequence represents a valid multibyte
+           character, otherwise False.
        """
     n = len(data)
     # out of bound check
