@@ -19,3 +19,6 @@ Write a function in C that inserts a number into a sorted singly linked list.
 
 ## [log_parsing](log_parsing)
 Write script that reads stdin line by line and computes metrics
+
+## [utf8_validation](./utf8_validation)
+Write script to determine if a given data set represents a valid UTF-8 encoding.
