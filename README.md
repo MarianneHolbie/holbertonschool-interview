@@ -22,3 +22,6 @@ Write script that reads stdin line by line and computes metrics
 
 ## [utf8_validation](./utf8_validation)
 Write script to determine if a given data set represents a valid UTF-8 encoding.
+
+## [Menger](./menger)
+Write a function that draws a 2D Menger Sponge
