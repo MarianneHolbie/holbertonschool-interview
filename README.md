@@ -25,3 +25,6 @@ Write script to determine if a given data set represents a valid UTF-8 encoding.
 
 ## [Menger](./menger)
 Write a function that draws a 2D Menger Sponge
+
+## [N queens](./nqueens)
+The N queens puzzle is the challenge of placing N non-attacking queens on an N×N chessboard.
