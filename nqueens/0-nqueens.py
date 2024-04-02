@@ -9,18 +9,17 @@ import sys
 if __name__ == "__main__":
 
     if len(sys.argv) != 2:
-        print("Usage: nqueens N\n")
+        print("Usage: nqueens N")
         exit(1)
     N = int(sys.argv[1])
     if not isinstance(N, int):
-        print("N must be a number\n")
+        print("N must be a number")
         exit(1)
     if N < 4:
-        print("N must be at least\n")
+        print("N must be at least")
         exit(1)
 
     board = [[0 for i in range(N)] for j in range(N)]
-
 
     def is_safe(board, row, col):
         """
@@ -47,7 +46,6 @@ if __name__ == "__main__":
 
         return True
 
-
     def solve_n_queens(board, col):
         # base case: if all queens are placed
         if col >= N:
@@ -70,7 +68,6 @@ if __name__ == "__main__":
 
         # if queen can not be placed in any row in this col
         return solution_found
-
 
     def print_solution(board):
         """
