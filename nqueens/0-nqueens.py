@@ -11,12 +11,12 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         exit(1)
-    N = int(sys.argv[1])
-    if not isinstance(N, int):
+    if not sys.argv[1].isdigit():
         print("N must be a number")
         exit(1)
+    N = int(sys.argv[1])
     if N < 4:
-        print("N must be at least")
+        print("N must be at least 4")
         exit(1)
 
     board = [[0 for i in range(N)] for j in range(N)]
