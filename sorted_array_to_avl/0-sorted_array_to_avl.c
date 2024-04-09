@@ -40,7 +40,6 @@ avl_t *create_avl_node(int *array, int start, int end, avl_t *parent)
 
 	/* calculate middle idx */
 	mid = (start + end) / 2;
-	printf("mid = %d\n", mid);
 	node = malloc(sizeof(avl_t));
 	if (node == NULL)
 		return (NULL);
