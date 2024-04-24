@@ -28,3 +28,6 @@ Write a function that draws a 2D Menger Sponge
 
 ## [N queens](./nqueens)
 The N queens puzzle is the challenge of placing N non-attacking queens on an N×N chessboard.
+
+## [starwars_api](./starwars_api/)
+ prints all characters of a Star Wars movie
