@@ -5,7 +5,8 @@
 /**
  * heapify - create heap from array
  * @arr: Array
- * @n: Size
+ * @size: Size
+ * @calcsize: Size
  * @i: Index
  */
 void heapify(int arr[], size_t size, size_t calcsize, int i)
@@ -45,7 +46,7 @@ void swap(int *a, int *b)
  * heap_sort - sort an array of integers in ascending
  * order using the Heap sort algorithm
  * @arr: Array
- * @n: Size
+ * @size: Size
 */
 void heap_sort(int arr[], size_t size)
 {
@@ -56,7 +57,7 @@ void heap_sort(int arr[], size_t size)
 		heapify(arr, size, size, i);
 
 	/* extract elements from heap */
-	for (i = size - 1; i >= 0; i--)
+	for (i = size - 1; i > 0; i--)
 	{
 		/* move current root to end */
 		swap(&arr[0], &arr[i]);
@@ -65,7 +66,5 @@ void heap_sort(int arr[], size_t size)
 
 		/* call max heapify on the reduced heap */
 		heapify(arr, i, size, 0);
-		
 	}
 }
-
