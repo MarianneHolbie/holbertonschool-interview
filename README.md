@@ -31,3 +31,6 @@ The N queens puzzle is the challenge of placing N non-attacking queens on an N×
 
 ## [starwars_api](./starwars_api/)
  prints all characters of a Star Wars movie
+
+## [heap sort](./heap_sort/)
+Sorts an array of integers in ascending order using the Heap sort algorithm
