@@ -47,12 +47,14 @@ void swap(int *a, int *b)
 */
 void heap_sort(int arr[], size_t n)
 {
+	int i;
+
 	/* rearrange array */
-	for (int i = n / 2 - 1; i >= 0; i--)
+	for (i = n / 2 - 1; i >= 0; i--)
 		heapify(arr, n, i);
 
 	/* extract elements from heap */
-	for (int i = n - 1; i >= 0; i--)
+	for (i = n - 1; i >= 0; i--)
 	{
 		print_array(arr, n);
 
