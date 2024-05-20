@@ -16,10 +16,12 @@ def count_words(subreddit, word_list):
     :param word_list: list of keywords to count
     :return: None
     """
+    counts = Counter()
+    after = None
 
-    def recursiv_count(subreddit, word_list, counts, after=None ):
+    def get_and_count(subreddit, word_list, after):
         """
-            recursiv counter
+            get article, count word and link to next
 
         :param subreddit: subreddit keyword
         :param word_list: list of word
@@ -28,6 +30,8 @@ def count_words(subreddit, word_list):
             of slice
         :return: None
         """
+        # access non local variable
+        nonlocal counts
 
         # parameter for the HTTP request
         headers = {'User-agent': 'Holberton'}
@@ -56,14 +60,15 @@ def count_words(subreddit, word_list):
                 if cleaned_word in word_list:
                     counts[cleaned_word] += 1
 
-        if after:
-            recursiv_count(subreddit, word_list, counts, after)
-        else:
-            sorted_counts = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
-            for word, count in sorted_counts:
-                if count > 0:
-                    print(f'{word}: {count}')
+        return after
 
-    word_list = [word.lower() for word in word_list]
-    counts = Counter()
-    recursiv_count(subreddit, word_list, counts)
+    # first call
+    after = get_and_count(subreddit, word_list, after)
+
+    while after:
+        after = get_and_count(subreddit, word_list, after)
+
+    sorted_counts = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
+    for word, count in sorted_counts:
+        if count > 0:
+            print(f'{word}: {count}')
