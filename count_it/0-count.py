@@ -10,7 +10,8 @@ BASE_URL = 'https://www.reddit.com/r/{}/hot.json'
 
 def count_words(subreddit, word_list):
     """
-        recursiv function that queries Reddit API, parses the title of all hot articles
+        recursiv function that queries Reddit API,
+        parses the title of all hot articles
         and prints a sorted count of given keywords
     :param subreddit:subreddit to query
     :param word_list: list of keywords to count
@@ -59,10 +60,11 @@ def count_words(subreddit, word_list):
         if after:
             recursiv_count(subreddit, word_list, counts, after)
         else:
-            sorted_counts = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
+            sorted_counts = sorted(counts.items(),
+                                   key=lambda item: (-item[1], item[0]))
             for word, count in sorted_counts:
                 if count > 0:
-                    print(f'{word}: {count}')
+                    print('{}: {}'.format(word, count))
 
     word_list = [word.lower() for word in word_list]
     counts = Counter()
