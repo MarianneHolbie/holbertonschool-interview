@@ -8,6 +8,29 @@ import requests
 BASE_URL = 'https://www.reddit.com/r/{}/hot.json'
 
 
+def get_reddit_data(subreddit, after=None):
+    """
+    request to reddit
+    :param subreddit: subreddit name
+    :param after: fullname element after
+    :return: dict
+    """
+    headers = {'User-agent': 'Holberton'}
+    params = {'limit': 100}
+    if after:
+        params['after'] = after
+
+    response = requests.get(BASE_URL.format(subreddit),
+                            headers=headers,
+                            params=params,
+                            allow_redirects=False)
+
+    if response.status_code != 200:
+        return None
+
+    return response.json().get('data', {})
+
+
 def count_words(subreddit, word_list, after=None, counts=None):
     """
         recursiv function that queries Reddit API, parses the title
@@ -22,23 +45,10 @@ def count_words(subreddit, word_list, after=None, counts=None):
     if counts is None:
         counts = Counter()
 
-    # parameter for the HTTP request
-    headers = {'User-agent': 'Holberton'}
-    params = {'limit': 100}
-    # add after to params
-    if after:
-        params['after'] = after
-
-    # get response of request
-    response = requests.get(BASE_URL.format(subreddit),
-                            headers=headers,
-                            params=params,
-                            allow_redirects=False)
-
-    if response.status_code != 200:
+    data = get_reddit_data(subreddit, after)
+    if data is None:
         return None
 
-    data = response.json().get('data', {})
     posts = data.get('children', [])
     after = data.get('after', None)
 
