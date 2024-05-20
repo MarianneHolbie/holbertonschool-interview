@@ -8,64 +8,62 @@ import requests
 BASE_URL = 'https://www.reddit.com/r/{}/hot.json'
 
 
-def get_reddit_data(subreddit, after=None):
+def count_words(subreddit, word_list):
     """
-    request to reddit
-    :param subreddit: subreddit name
-    :param after: fullname element after
-    :return: dict
-    """
-    headers = {'User-agent': 'Holberton'}
-    params = {'limit': 100}
-    if after:
-        params['after'] = after
-
-    response = requests.get(BASE_URL.format(subreddit),
-                            headers=headers,
-                            params=params,
-                            allow_redirects=False)
-
-    if response.status_code != 200:
-        return None
-
-    return response.json().get('data', {})
-
-
-def count_words(subreddit, word_list, after=None, counts=None):
-    """
-        recursiv function that queries Reddit API, parses the title
-        of all hot articles and prints a sorted count of given keywords
+        recursiv function that queries Reddit API, parses the title of all hot articles
+        and prints a sorted count of given keywords
     :param subreddit:subreddit to query
     :param word_list: list of keywords to count
-    :param after: fullname of an item in the listing
-    :param counts: counter
     :return: None
     """
-    # intiailize counter if not given
-    if counts is None:
-        counts = Counter()
 
-    data = get_reddit_data(subreddit, after)
-    if data is None:
-        return None
+    def recursiv_count(subreddit, word_list, counts, after=None):
+        """
+            recursive counter
 
-    posts = data.get('children', [])
-    after = data.get('after', None)
+        :param subreddit: subreddit keyword
+        :param word_list: list of word
+        :param counts: counter
+        :param after: fullname of an item in the listing to use as anchor point
+            of slice
+        :return: None
+        """
 
-    # count occurrences of words in title
-    for post in posts:
-        title = post['data']['title'].lower().split()
-        for word in title:
-            cleaned_word = ''.join(char for char in word if char.isalnum())
-            if cleaned_word in word_list:
-                counts[cleaned_word] += 1
+        # parameter for the HTTP request
+        headers = {}
+        params = {'limit': 100}
+        # add after to params
+        if after:
+            params['after'] = after
 
-    # recursiv call
-    if after:
-        count_words(subreddit, word_list, after, counts)
-    else:
-        sorted_counts = sorted(counts.items(),
-                               key=lambda item: (-item[1], item[0]))
-        for word, count in sorted_counts:
-            if count > 0:
-                print(f'{word}: {count}')
+        # get response of request
+        response = requests.get(BASE_URL.format(subreddit),
+                                headers=headers,
+                                params=params,
+                                allow_redirects=False)
+
+        if response.status_code != 200:
+            return None
+
+        data = response.json().get('data', {})
+        posts = data.get('children', [])
+        after = data.get('after', None)
+
+        for post in posts:
+            title = post['data']['title'].lower().split()
+            for word in title:
+                cleaned_word = ''.join(char for char in word if char.isalnum())
+                if cleaned_word in word_list:
+                    counts[cleaned_word] += 1
+
+        if after:
+            recursiv_count(subreddit, word_list, counts, after)
+        else:
+            sorted_counts = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
+            for word, count in sorted_counts:
+                if count > 0:
+                    print(f'{word}: {count}')
+
+    word_list = [word.lower() for word in word_list]
+    counts = Counter()
+    recursiv_count(subreddit, word_list, counts)
