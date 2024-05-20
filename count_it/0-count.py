@@ -2,8 +2,8 @@
 """
     Printed sorted count of given keywords en title hot articles
 """
-import requests
 from collections import Counter
+import requests
 
 BASE_URL = 'https://www.reddit.com/r/{}/hot.json'
 
