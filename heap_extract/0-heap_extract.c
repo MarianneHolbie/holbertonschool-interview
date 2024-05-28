@@ -34,9 +34,8 @@ if (largest != node)
 {
 /* swap */
 int temp;
-node->n = largest->n;
-
 temp = node->n;
+node->n = largest->n;
 largest->n = temp;
 
 /* repeat process*/
@@ -125,7 +124,7 @@ return (queue[rear - 1]);
 /**
  * findMinNode - fin node with minest value
  * @root: root of node
- * return: min node
+ * Return: min node
 */
 heap_t *findMinNode(heap_t *root)
 {
