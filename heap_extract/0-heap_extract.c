@@ -85,6 +85,7 @@ else
 successor = findMinNode(node->right);
 node->n = successor->n;
 deleteNode(root, successor);
+free(successor);
 }
 }
 
