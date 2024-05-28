@@ -10,12 +10,13 @@
 */
 void heapify(heap_t **root, heap_t *node)
 {
-if (!node)
-return;
-
 heap_t *largest;
 heap_t *left;
 heap_t *right;
+
+if (!node)
+return;
+
 
 largest = node;
 left = node->left;
@@ -50,11 +51,11 @@ heapify(root, largest);
 */
 void deleteNode(heap_t *root, heap_t *node)
 {
-if (!root || !node)
-return;
-
 heap_t *child;
 heap_t *successor;
+
+if (!root || !node)
+return;
 
 /* node is a leaf*/
 if (!node->left && !node->right)
@@ -96,12 +97,13 @@ deleteNode(root, successor);
 */
 heap_t *findLastNode(heap_t *root)
 {
-if (!root)
-return (NULL);
-
 heap_t *queue[1000];
 heap_t *curr;
 int front = 0, rear = 0;
+
+if (!root)
+return (NULL);
+
 
 queue[rear++] = root;
 while (front != rear)
