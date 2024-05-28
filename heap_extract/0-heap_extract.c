@@ -17,11 +17,9 @@ heap_t *right;
 if (!node)
 return;
 
-
 largest = node;
 left = node->left;
 right = node->right;
-
 
 /* Find biggest node and its child */
 if (left && left->n > largest->n)
@@ -85,7 +83,6 @@ else
 successor = findMinNode(node->right);
 node->n = successor->n;
 deleteNode(root, successor);
-free(successor);
 }
 }
 
@@ -104,7 +101,6 @@ int front = 0, rear = 0;
 if (!root)
 return (NULL);
 
-
 queue[rear++] = root;
 while (front != rear)
 {
@@ -118,7 +114,6 @@ queue[rear++] = curr->right;
 }
 
 return (queue[rear - 1]);
-
 }
 
 
@@ -160,6 +155,13 @@ root_value = (*root)->n;
 
 /* Find last order node */
 lastNode = findLastNode(*root);
+
+if (lastNode == *root)
+{
+free(*root);
+*root = NULL;
+return(root_value);
+}
 
 /* replace root by value last order node*/
 (*root)->n = lastNode->n;
