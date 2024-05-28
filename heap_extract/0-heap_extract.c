@@ -13,9 +13,14 @@ void heapify(heap_t **root, heap_t *node)
 if (!node)
 return;
 
-heap_t *largest = node;
-heap_t *left = node->left;
-heap_t *right = node->right;
+heap_t *largest;
+heap_t *left;
+heap_t *right;
+
+largest = node;
+left = node->left;
+right = node->right;
+
 
 /* Find biggest node and its child */
 if (left && left->n > largest->n)
@@ -27,8 +32,10 @@ largest = right;
 if (largest != node)
 {
 /* swap */
-int temp = node->n;
+int temp;
 node->n = largest->n;
+
+temp = node->n;
 largest->n = temp;
 
 /* repeat process*/
@@ -46,6 +53,9 @@ void deleteNode(heap_t *root, heap_t *node)
 if (!root || !node)
 return;
 
+heap_t *child;
+heap_t *successor;
+
 /* node is a leaf*/
 if (!node->left && !node->right)
 {
@@ -58,7 +68,7 @@ node->parent->right = NULL;
 /* node add one child*/
 else if (!node->left || !node->right)
 {
-heap_t *child = node->left ? node->left : node->right;
+child = node->left ? node->left : node->right;
 if (node->parent)
 {
 if (node->parent->left == node)
@@ -72,7 +82,7 @@ child->parent = node->parent;
 /* node add 2 child*/
 else
 {
-heap_t *successor = findMinNode(node->right);
+successor = findMinNode(node->right);
 node->n = successor->n;
 deleteNode(root, successor);
 }
@@ -90,12 +100,13 @@ if (!root)
 return (NULL);
 
 heap_t *queue[1000];
+heap_t *curr;
 int front = 0, rear = 0;
 
 queue[rear++] = root;
 while (front != rear)
 {
-heap_t *curr = queue[front++];
+curr = queue[front++];
 
 /* add child to the queue*/
 if (curr->left)
@@ -119,7 +130,9 @@ heap_t *findMinNode(heap_t *root)
 if (!root)
 return (NULL);
 
-heap_t *curr = root;
+heap_t *curr;
+
+curr = root;
 while (curr->left)
 curr = curr->left;
 
@@ -135,6 +148,7 @@ return (curr);
 int heap_extract(heap_t **root)
 {
 int root_value;
+heap_t *lastNode;
 
 if (!root || !(*root))
 return (0);
@@ -143,7 +157,7 @@ return (0);
 root_value = (*root)->n;
 
 /* Find last order node */
-heap_t *lastNode = findLastNode(*root);
+lastNode = findLastNode(*root);
 
 /* replace root by value last order node*/
 (*root)->n = lastNode->n;
