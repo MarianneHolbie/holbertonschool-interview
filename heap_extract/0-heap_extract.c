@@ -129,10 +129,10 @@ return (queue[rear - 1]);
 */
 heap_t *findMinNode(heap_t *root)
 {
+heap_t *curr;
+
 if (!root)
 return (NULL);
-
-heap_t *curr;
 
 curr = root;
 while (curr->left)
