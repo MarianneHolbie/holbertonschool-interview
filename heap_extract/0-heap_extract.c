@@ -160,7 +160,7 @@ if (lastNode == *root)
 {
 free(*root);
 *root = NULL;
-return(root_value);
+return (root_value);
 }
 
 /* replace root by value last order node*/
