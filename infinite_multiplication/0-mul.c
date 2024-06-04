@@ -54,17 +54,16 @@ return (len);
 */
 int main(int argc, char *argv[])
 {
+int len1, len2;
+int *result;
+int i, j, sum, mul;
+
 if (argc != 3)
 print_error();
 _isdigit(argv[1]);
 _isdigit(argv[2]);
-
-int len1, len2;
-int *result;
-int i, j, sum, mul;
 len1 = _strlen(argv[1]);
 len2 = _strlen(argv[2]);
-
 
 result = malloc((len1 + len2) *sizeof(int));
 if (!result)
@@ -93,7 +92,6 @@ while (i < len1 + len2)
 {
 _putchar(result[i] + '0');
 i++;
-}
 }
 _putchar('\n');
 }
