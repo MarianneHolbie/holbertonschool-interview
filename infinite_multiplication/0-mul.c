@@ -64,7 +64,6 @@ _isdigit(argv[1]);
 _isdigit(argv[2]);
 len1 = _strlen(argv[1]);
 len2 = _strlen(argv[2]);
-
 result = malloc((len1 + len2) *sizeof(int));
 if (!result)
 print_error();
@@ -94,4 +93,5 @@ _putchar(result[i] + '0');
 i++;
 }
 _putchar('\n');
+return (0);
 }
