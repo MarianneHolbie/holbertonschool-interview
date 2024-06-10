@@ -37,3 +37,6 @@ Sorts an array of integers in ascending order using the Heap sort algorithm
 
 ## [advanced_binary_search](./advanced_binary_search/)
 Instead of binary search, implement earch which return the index of the first value in the array (if this valuer appears more than once in the array)
+
+## [rotate_2d_matrix](./rotate_2d_matrix/)
+Given an image represented by an NxN matrix write a method to rotate it by 90 degrees.
