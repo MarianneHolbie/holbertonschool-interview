@@ -15,7 +15,8 @@ listint_t *find_listint_loop(listint_t *head)
 if (head == NULL)
 return (NULL);
 
-listint_t *slow, *fast;
+listint_t *slow;
+listint_t *fast;
 
 slow = fast = head;
 
