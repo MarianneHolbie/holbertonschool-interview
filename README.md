@@ -40,3 +40,6 @@ Instead of binary search, implement earch which return the index of the first va
 
 ## [rotate_2d_matrix](./rotate_2d_matrix/)
 Given an image represented by an NxN matrix write a method to rotate it by 90 degrees.
+
+## [making_change](./making_change)
+Given a pile of coins of different values, determine the fewest number of coins needed to meet a given amount `total`.
