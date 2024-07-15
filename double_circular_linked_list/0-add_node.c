@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "list.h"
 
 /**
@@ -10,7 +11,7 @@
  */
 List *add_node_end(List **list, char *str)
 {
-List *new_node, *last;
+List *new_node;
 
 if (list == NULL)
 return (NULL);
@@ -19,19 +20,20 @@ new_node = malloc(sizeof(List));
 if (new_node == NULL)
 return (NULL);
 
-new_node->str = str;
+new_node->str = strdup(str);
+
 if (*list == NULL)
 {
 *list = new_node;
 new_node->prev = new_node;
 new_node->next = new_node;
+return new_node;
 }
 else
 {
-last = (*list)->prev;
-last->next = new_node;
-new_node->prev = last;
+new_node->prev = (*list)->prev;
 new_node->next = *list;
+(*list)->prev->next = new_node;
 (*list)->prev = new_node;
 }
 return (new_node);
@@ -45,7 +47,7 @@ return (new_node);
  */
 List *add_node_begin(List **list, char *str)
 {
-List *new_node, *last;
+List *new_node;
 
 if (list == NULL)
 return (NULL);
@@ -54,20 +56,21 @@ new_node = malloc(sizeof(List));
 if (new_node == NULL)
 return (NULL);
 
-new_node->str = str;
+new_node->str = strdup(str);
+
 if (*list == NULL)
 {
 *list = new_node;
 new_node->prev = new_node;
 new_node->next = new_node;
+return new_node;
 }
 else
 {
-last = (*list)->prev;
-new_node->prev = last;
+new_node->prev = (*list)->prev;
 new_node->next = *list;
+(*list)->prev->next = new_node;
 (*list)->prev = new_node;
-last->next = new_node;
 *list = new_node;
 }
 return (new_node);
