@@ -24,6 +24,8 @@ if (!new_node)
 return (NULL);
 
 new_node->str = strdup(str);
+if (!new_node->str)
+		return (NULL);
 
 if (*list == NULL)
 {
@@ -64,6 +66,8 @@ if (!new_node)
 return (NULL);
 
 new_node->str = strdup(str);
+if (!new_node->str)
+		return (NULL);
 
 if (*list == NULL)
 {
