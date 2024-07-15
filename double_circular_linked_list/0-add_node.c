@@ -16,8 +16,11 @@ List *new_node, *end;
 if (list == NULL)
 return (NULL);
 
+if (!str)
+	return (NULL);
+
 new_node = malloc(sizeof(List));
-if (new_node == NULL)
+if (!new_node)
 return (NULL);
 
 new_node->str = strdup(str);
@@ -53,8 +56,11 @@ List *new_node, *end;
 if (list == NULL)
 return (NULL);
 
+if (!str)
+	return (NULL);
+
 new_node = malloc(sizeof(List));
-if (new_node == NULL)
+if (!new_node)
 return (NULL);
 
 new_node->str = strdup(str);
