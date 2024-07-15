@@ -67,7 +67,7 @@ return (NULL);
 
 new_node->str = strdup(str);
 if (!new_node->str)
-		return (NULL);
+return (NULL);
 
 if (*list == NULL)
 {
