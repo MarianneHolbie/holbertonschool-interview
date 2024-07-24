@@ -31,7 +31,7 @@ return (max);
 void countSort(int array[], size_t size, int exp)
 {
 /* output array */
-int output[size];
+int *output = malloc(sizeof(int) * size);
 size_t i;
 int count[10] = {0};
 
@@ -49,6 +49,8 @@ count[(array[i] / exp) % 10]--;
 
 for (i = 0; i < size; i++)
 array[i] = output[i];
+
+free(output);
 }
 
 /**
