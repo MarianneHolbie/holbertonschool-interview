@@ -6,7 +6,7 @@
  * getMax - Get the maximum value in an array
  * @array: The array to search
  * @size: The size of the array
- * Return: The maximum value in the array
+ * Return: Maximum value in the array
  */
 int getMax(int array[], size_t size)
 {
