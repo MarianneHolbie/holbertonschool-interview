@@ -53,8 +53,8 @@ array[i] = output[i];
 
 /**
 * radix_sort - Function that sorts arr[] using Radix Sort
-* @array: the array to sort
-* @size: size of the array
+* @array: The array to sort
+* @size: The size of the array
 */
 void radix_sort(int *array, size_t size)
 {
