@@ -61,6 +61,10 @@ free(output);
 void radix_sort(int *array, size_t size)
 {
 int m, exp;
+
+if (!array || size <= 1)
+return;
+
 m = getMax(array, size);
 
 for (exp = 1; m / exp > 0; exp *= 10)
