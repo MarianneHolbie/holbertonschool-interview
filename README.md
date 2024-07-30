@@ -56,3 +56,7 @@ Given a pile of coins of different values, determine the fewest number of coins 
 ## [radix_sort](./radix_sort)
 
 Sorts an array of integers in ascending order using the Radix sort algorithm
+
+## [island_perimeter](./island_perimeter)
+
+Function to calculate perimeter of an island described in a grid
