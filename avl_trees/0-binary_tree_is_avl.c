@@ -12,7 +12,7 @@
 int height(const binary_tree_t *tree)
 {
 if (tree == NULL)
-return (0);
+return (-1);
 
 int left_height = height(tree->left);
 int right_height = height(tree->right);
@@ -33,7 +33,7 @@ int is_bst(const binary_tree_t *tree, int min, int max)
 if (tree == NULL)
 return (1);
 
-if (tree->n < min || tree->n > max)
+if (tree->n <= min || tree->n >= max)
 return (0);
 
 return (is_bst(tree->left, min, tree->n - 1) &&
@@ -61,6 +61,10 @@ int right_height = height(tree->right);
 
 if (abs(left_height - right_height) > 1)
 return (0);
+
+/* case One child only */
+if (tree->left == NULL || tree->right == NULL)
+return (1);
 
 /* recursiv */
 return (binary_tree_is_avl(tree->left) && binary_tree_is_avl(tree->right));
