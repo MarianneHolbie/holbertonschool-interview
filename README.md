@@ -60,3 +60,7 @@ Sorts an array of integers in ascending order using the Radix sort algorithm
 ## [island_perimeter](./island_perimeter)
 
 Function to calculate perimeter of an island described in a grid
+
+## [wild_cmp](./wild_cmp)
+
+Function to compare two strings with support for wildcard characters
