@@ -64,3 +64,7 @@ Function to calculate perimeter of an island described in a grid
 ## [wild_cmp](./wild_cmp)
 
 Function to compare two strings with support for wildcard characters
+
+## [pascal_triangle](./pascal_triangle)
+
+Function to return a list of lists of integers representing the Pascal's triangle of `n`
